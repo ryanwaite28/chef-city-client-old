@@ -1,6 +1,6 @@
 yarn add backbone webpack webpack-cli webpack-merge webpack-dev-server typescript ts-loader html-loader css-loader exports-loader
 yarn add copy-webpack-plugin @types/backbone clean-webpack-plugin html-webpack-plugin handlebars-webpack-plugin handlebars-loader
-yarn add autoprefixer css-loader node-sass postcss-loader sass-loader style-loader
+yarn add autoprefixer css-loader node-sass postcss-loader sass-loader style-loader precss
 
 
 
