@@ -1,0 +1,27 @@
+/* Tags */
+
+
+
+/* IDs */
+
+#app-navbar {
+  border-bottom: 1px solid grey;
+}
+
+#app-page-container {
+  min-height: 50vh;
+  padding: 15px 0px;
+}
+
+#app-footer {
+  border-top: 1px solid grey;
+  padding: 15px;
+}
+
+/* Classes */
+
+.middlr {
+  display: block;
+  margin: auto;
+}
+

@@ -1,0 +1,26 @@
+typescript: declare html module for template import
+---
+
+1. use npm/yarn to install html-loader for webpack 
+
+npm install html-loader | yarn add html-loader
+
+2. in webpack, add this loader in the module.rules array
+
+{
+  test: /\.html$/,
+  loader: 'html-loader',
+  exclude: /node_modules/,
+},
+
+3. add this 'type' in the root folder of the typescript app (usually in the same folder as the tsconfig.json or in a types/ folder in the root dir)
+
+// html.d.ts | declare html module for imports as string
+declare module '*.html' {
+  const content: string;
+  export default content;
+}
+
+4. add this to tsconfig.json under compilerOptions (if there is a types directory)
+
+"paths": { "*": ["types/*"] },

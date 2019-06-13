@@ -1,0 +1,7 @@
+Resources
+---
+
+https://github.com/Microsoft/TypeScript/issues/2709#issuecomment-314483051
+
+https://stackoverflow.com/questions/46503615/import-html-from-typescript-with-webpack
+

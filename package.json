@@ -1,0 +1,43 @@
+{
+  "name": "chef-city-client",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "author": "Ryan M. Waite",
+  "license": "ISC",
+  "dependencies": {
+    "@types/backbone": "^1.4.0",
+    "autoprefixer": "^9.6.0",
+    "backbone": "^1.4.0",
+    "bootstrap": "^4.3.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^3.0.0",
+    "handlebars": "^4.1.2",
+    "handlebars-loader": "^1.7.1",
+    "handlebars-webpack-plugin": "^1.5.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.4.1",
+    "node-sass": "^4.12.0",
+    "popper": "^1.0.1",
+    "popper.js": "1.14.7",
+    "postcss-loader": "^3.0.0",
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "underscore": "^1.9.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1",
+    "webpack-merge": "^4.2.1"
+  }
+}

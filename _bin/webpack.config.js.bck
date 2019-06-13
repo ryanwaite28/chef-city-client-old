@@ -1,0 +1,49 @@
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+  entry: './src/main.ts',
+  devtool: 'inline-source-map',
+
+  devServer: {
+    contentBase: './dist',
+    port: 9500,
+    hot: true,
+    // proxy: {
+    //   '/': {
+    //       target: 'http://localhost:5900'
+    //   }
+    // }
+  },
+
+  output: {
+    publicPath: '/',
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+        exclude: /node_modules/,
+      },
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
