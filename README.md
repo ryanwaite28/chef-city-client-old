@@ -6,7 +6,7 @@ Website for sharing/rating recipes and empowering chefs.
 Using:
 * Webpack
 * Typescript
-* CSS
+* CSS / SASS
 * Bootstrap
 * Backbone
 * jQuery
