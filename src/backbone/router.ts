@@ -1,4 +1,5 @@
-import { Router } from 'backbone';
+import { Router, history } from 'backbone';
+import { pairs, find, isRegExp } from 'underscore';
 
 import { 
   setCurrentPageView,
@@ -23,8 +24,33 @@ const AppRouter = Router.extend({
   },
 
   initialize() {
-    const currentPageView = new WelcomePageView();
-    setCurrentPageView(currentPageView);
+    console.log('router initialized.');
+  },
+
+  current() {
+    // found at: https://stackoverflow.com/questions/7563949/backbone-js-get-current-route
+    var Router = this,
+      fragment = (<any>history).fragment,
+      routes = pairs(Router.routes),
+      route = null, params = null, matched;
+
+    matched = find(routes, function(handler) {
+      route = isRegExp(handler[0]) ? handler[0] : Router._routeToRegExp(handler[0]);
+      return route.test(fragment);
+    });
+
+    if(matched) {
+      // NEW: Extracts the params using the internal
+      // function _extractParameters 
+      params = Router._extractParameters(route, fragment);
+      route = matched[1];
+    }
+
+    return {
+      route,
+      fragment,
+      params,
+    };
   },
 
   welcome() {

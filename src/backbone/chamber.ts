@@ -24,6 +24,9 @@ export function setAppRouter() {
     const router: Router = new AppRouter();
     AppStore.AppRouter = router;
     history.start();
+
+    // const current = AppStore.AppRouter.current();
+    // console.log(current);
   }
 }
 

@@ -10,11 +10,11 @@ module.exports = merge(common, {
     contentBase: './dist',
     port: 9500,
     hot: true,
-    // proxy: {
-    //   '/': {
-    //       target: 'http://localhost:5900'
-    //   }
-    // }
+    proxy: {
+      '/api': {
+        target: 'http://localhost:6700'
+      }
+    }
   },
   output: {
     publicPath: '/',
