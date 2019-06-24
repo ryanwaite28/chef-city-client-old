@@ -34,7 +34,7 @@ export function getAppRouter() {
   return AppStore.AppRouter;
 }
 
-export function setSessionModel(session: any, triggerStream: boolean = true) {
+export function setSessionModel(session: any, triggerStream: boolean = false) {
   if (!AppStore.sessionModel) {
     AppStore.sessionModel = new Models.SessionModel(session);
   } else {

@@ -11,6 +11,7 @@ import {
 import WelcomePageView from './views/page-container/pages/welcome/welcome.page.view';
 import SignupPageView from './views/page-container/pages/signup/signup.page.view';
 import SigninPageView from './views/page-container/pages/signin/signin.page.view';
+import HomePageView from './views/page-container/pages/home/home.page.view';
 
 
 
@@ -77,10 +78,11 @@ const AppRouter = Router.extend({
     
     if (sessionModel.get('online')) {
       console.log('is online');
-
+      const currentPageView = new HomePageView({ model: sessionModel });
+      setCurrentPageView(currentPageView);
     } else {
       console.log('is not online');
-      this.navigate('#/signin');
+      this.navigate('/#/signin');
     }
   },
 

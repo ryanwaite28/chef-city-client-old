@@ -8,5 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development mode!');
 }
 
-const app: App = new App();
-Object.freeze(app);
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Page loaded');
+  const app: App = new App();
+  Object.freeze(app);
+});
