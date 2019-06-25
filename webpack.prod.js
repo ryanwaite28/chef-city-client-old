@@ -23,7 +23,7 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    publicPath: '/',
+    publicPath: '',
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'build'),
   },
