@@ -1,5 +1,8 @@
 const token_name: string = 'chef-city-token';
 
+const api_domain = process.env.API_DOMAIN || `http://localhost:6700/api`;
+console.log('api_domain', api_domain);
+
 export function send_request(route: string, method: string, data: {} | FormData, content_type: string) {
   const obj: any = {
     method: method || "GET",
@@ -8,6 +11,9 @@ export function send_request(route: string, method: string, data: {} | FormData,
       "Authorization": window.localStorage.getItem(token_name),
       "Accept": "application/json"
     }
+  }
+  if (method !== 'GET') {
+    obj.credentials = 'include';
   }
   if(data) {
     if(data.constructor === Object) {
@@ -19,10 +25,8 @@ export function send_request(route: string, method: string, data: {} | FormData,
     }
   }
 
-  const url_1 = `/api${route}`;
-  const url_2 = `http://localhost:6700/api${route}`;
-
-  return fetch(url_1, obj).then((resp) => resp.json());
+  const url = api_domain + route;
+  return fetch(url, obj).then((resp) => resp.json());
 }
 
 export function sign_up (data: any) {
@@ -59,11 +63,9 @@ export function sign_out () {
 export function check_session () {
   return send_request("/check_session", "GET", null, null).then(json => {
     console.log(json);
-    if(json.error) {
+    json.online ? 
+      window.localStorage.setItem(token_name, json.token) :
       window.localStorage.removeItem(token_name);
-      return json;
-    }
-    window.localStorage.setItem(token_name, json.token);
     return json;
   }).catch(error => {
     console.log(error);
