@@ -1,7 +1,9 @@
 const token_name: string = 'chef-city-token';
 
-const api_domain = process.env.API_DOMAIN || `http://localhost:6700/api`;
-console.log('api_domain', api_domain);
+const isProd = process.env.NODE_ENV === 'production';
+const api_domain = isProd ? 'https://rmw-chef-city-server.herokuapp.com/api' : `http://localhost:6700/api`;
+
+console.log({ isProd, api_domain });
 
 export function send_request(route: string, method: string, data: {} | FormData, content_type: string) {
   const obj: any = {
@@ -62,7 +64,7 @@ export function sign_out () {
 
 export function check_session () {
   return send_request("/check_session", "GET", null, null).then(json => {
-    console.log(json);
+    // console.log(json);
     json.online ? 
       window.localStorage.setItem(token_name, json.token) :
       window.localStorage.removeItem(token_name);

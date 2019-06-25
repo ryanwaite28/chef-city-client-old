@@ -39,7 +39,7 @@ const SigninPageView = View.extend({
   },
 
   signin: function(evt: any) {
-    console.log(evt);
+    // console.log(evt);
     if (evt && evt.preventDefault) {
       evt.preventDefault();
     }

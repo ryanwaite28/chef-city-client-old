@@ -39,7 +39,7 @@ const SignupPageView = View.extend({
   },
 
   signup: function(evt: any) {
-    console.log(evt);
+    // console.log(evt);
     if (evt && evt.preventDefault) {
       evt.preventDefault();
     }

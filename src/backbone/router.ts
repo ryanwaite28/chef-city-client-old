@@ -3,7 +3,6 @@ import { pairs, find, isRegExp } from 'underscore';
 
 import { 
   setCurrentPageView,
-  getCurrentPageView,
   getSessionModel,
 } from './chamber';
 
@@ -55,25 +54,25 @@ const AppRouter = Router.extend({
   },
 
   welcome() {
-    console.log('navigating to: /');
+    // console.log('navigating to: /');
     const currentPageView = new WelcomePageView();
     setCurrentPageView(currentPageView);
   },
 
   signup() {
-    console.log('navigating to: /signup');
+    // console.log('navigating to: /signup');
     const currentPageView = new SignupPageView();
     setCurrentPageView(currentPageView);
   },
 
   signin() {
-    console.log('navigating to: /signin');
+    // console.log('navigating to: /signin');
     const currentPageView = new SigninPageView();
     setCurrentPageView(currentPageView);
   },
 
   home() {
-    console.log('navigating to: /home');
+    // console.log('navigating to: /home');
     const sessionModel = getSessionModel();
     
     if (sessionModel.get('online')) {
