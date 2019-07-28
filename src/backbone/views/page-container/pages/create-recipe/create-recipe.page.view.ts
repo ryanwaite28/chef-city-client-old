@@ -33,7 +33,7 @@ const CreateRecipePageView = View.extend({
   },
 
   createRecipe(evt: MouseEvent) {
-    console.log(evt);
+    // console.log(evt);
     if (evt && evt.preventDefault) {
         evt.preventDefault();
     }
@@ -43,7 +43,7 @@ const CreateRecipePageView = View.extend({
 
     disable_buttons();
     create_recipe(formData).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.error) {
             flash_message(resp.message, 'danger');
             enable_buttons();
