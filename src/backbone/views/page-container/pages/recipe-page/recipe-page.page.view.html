@@ -1,0 +1,39 @@
+<div id="recipe-page-view">
+    <div class="card space-bm-1">
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                    <!-- from: https://www.w3schools.com/howto/howto_css_contact_chips.asp -->
+                    <div class="chip">
+                        <img src="<%= creator.icon_link %>" >
+                        <%= creator.displayname %>
+                    </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2><%= title %></h2>
+                <h6><%= desc %></h6>
+                <img class="recipe-img-1 polaroid-1" src="<%= image_link %>" >
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <strong>Ingredients:</strong><br/>
+                    <%= ingredients %>
+                </p>
+                <p>
+                    <strong>Tags:</strong><br/>
+                    <%= tags %>
+                </p>
+                <p>
+                    <strong>Created:</strong><br/>
+                    <%= date_created %>
+                </p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -16,7 +16,7 @@ import HtmlTemplate from './signup.page.view.html';
 
 const SignupPageView = View.extend({
   
-  tagName: 'div',
+  tagName: 'app-signup',
   template: template(HtmlTemplate),
 
   initialize() {
@@ -65,16 +65,7 @@ const SignupPageView = View.extend({
       
       flash_message(resp.message, 'success');
       setTimeout(() => {
-        let sessionObj;
-        if (resp.user) {
-          const user = { ...resp.user };
-          delete resp.user;
-          sessionObj = { ...resp, ...user }
-        } else {
-          sessionObj = { ...resp }
-        }
-
-        setSessionModel(sessionObj);
+        setSessionModel(resp);
         const router = getAppRouter();
         router.navigate('#/home');
       }, 1000);

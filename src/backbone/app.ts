@@ -17,16 +17,7 @@ export default class App {
 
   private initApp() {
     check_session()
-    .then(resp => {
-      let sessionObj;
-      if (resp.user) {
-        const user = { ...resp.user };
-        delete resp.user;
-        sessionObj = { ...resp, ...user }
-      } else {
-        sessionObj = { ...resp }
-      }
-      
+    .then(sessionObj => {
       setSessionModel(sessionObj);
       setAppRouter();
       setNavbarView();

@@ -7,7 +7,7 @@ import HtmlTemplate from './home.page.view.html';
 
 const HomePageView = View.extend({
   
-  tagName: 'div',
+  tagName: 'app-home',
   template: template(HtmlTemplate),
 
   initialize() {

@@ -1,4 +1,4 @@
-import { Router, history } from 'backbone';
+import { Router, history, Model, View } from 'backbone';
 import { pairs, find, isRegExp } from 'underscore';
 
 import { 
@@ -6,12 +6,19 @@ import {
   getSessionModel,
 } from './chamber';
 
+import {
+  get_recipe_by_id,
+} from './client';
+
+import Models from './models/_main';
+
 // Pages
 import WelcomePageView from './views/page-container/pages/welcome/welcome.page.view';
 import SignupPageView from './views/page-container/pages/signup/signup.page.view';
 import SigninPageView from './views/page-container/pages/signin/signin.page.view';
 import HomePageView from './views/page-container/pages/home/home.page.view';
-
+import CreateRecipePageView from './views/page-container/pages/create-recipe/create-recipe.page.view';
+import RecipePageView from './views/page-container/pages/recipe-page/recipe-page.page.view';
 
 
 const AppRouter = Router.extend({
@@ -21,6 +28,8 @@ const AppRouter = Router.extend({
     "signup": "signup",
     "signin": "signin",
     "home": "home",
+    "create-recipe": "createRecipe",
+    "recipes/:id": "recipePage",
   },
 
   initialize() {
@@ -76,13 +85,46 @@ const AppRouter = Router.extend({
     const sessionModel = getSessionModel();
     
     if (sessionModel.get('online')) {
-      console.log('is online');
+      // console.log('is online');
       const currentPageView = new HomePageView({ model: sessionModel });
       setCurrentPageView(currentPageView);
     } else {
-      console.log('is not online');
+      // console.log('is not online');
       this.navigate('/#/signin');
     }
+  },
+
+  createRecipe() {
+    // console.log('navigating to: /create-recipe');
+    const sessionModel = getSessionModel();
+    
+    if (sessionModel.get('online')) {
+      // console.log('is online');
+      const currentPageView = new CreateRecipePageView({ model: sessionModel });
+      setCurrentPageView(currentPageView);
+    } else {
+      // console.log('is not online');
+      this.navigate('/#/signin');
+    }
+  },
+
+  recipePage() {
+    // const current = this.current();
+    // const id = parseInt(current.params[0]);
+    // get_recipe_by_id(id).then(resp => {
+    //   if (resp.recipe) {
+    //     console.log(`recipe exists`, resp.recipe);
+    //     const recipeModel: Model = new Models.RecipeModel(resp.recipe);
+    //     const currentPageView: View = new RecipePageView({ model: recipeModel });
+    //     setCurrentPageView(currentPageView);
+    //   } else {
+    //     console.log(`no recipe exists with id: ${id}. redirecting...`);
+    //     this.navigate(`#/home`);
+    //   }
+    // });
+
+        const currentPageView: View = new RecipePageView({ model: null });
+        setCurrentPageView(currentPageView);
   },
 
 });

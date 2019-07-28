@@ -7,7 +7,7 @@ import HtmlTemplate from './welcome.page.view.html';
 
 const WelcomePageView = View.extend({
   
-  tagName: 'div',
+  tagName: 'app-welcome',
   template: template(HtmlTemplate),
 
   initialize() {

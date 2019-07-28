@@ -34,11 +34,20 @@ export function getAppRouter() {
   return AppStore.AppRouter;
 }
 
-export function setSessionModel(session: any, triggerStream: boolean = false) {
-  if (!AppStore.sessionModel) {
-    AppStore.sessionModel = new Models.SessionModel(session);
+export function setSessionModel(sessionResp: any, triggerStream: boolean = false) {
+  let sessionObj;
+  if (sessionResp.user) {
+    const user = { ...sessionResp.user };
+    delete sessionResp.user;
+    sessionObj = { ...sessionResp, ...user }
   } else {
-    AppStore.sessionModel.set(session);
+    sessionObj = { ...sessionResp }
+  }
+
+  if (!AppStore.sessionModel) {
+    AppStore.sessionModel = new Models.SessionModel(sessionObj);
+  } else {
+    AppStore.sessionModel.set(sessionObj);
   }
 
   if (triggerStream) {

@@ -25,10 +25,15 @@ const PageContainerView = View.extend({
   },
 
   render() {
-    const html = $(this.template());
-    const currentPageView = getCurrentPageView();
-    html.append(currentPageView.$el);
-    this.$el.html(html);
+    try {
+      const html = $(this.template());
+      const currentPageView = getCurrentPageView();
+      html.append(currentPageView.$el);
+      this.$el.html(html);
+    }
+    catch(e) {
+      console.log(e);
+    }
     return this;
   }
 

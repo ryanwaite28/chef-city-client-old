@@ -69,17 +69,13 @@ export function check_session () {
       window.localStorage.setItem(token_name, json.token) :
       window.localStorage.removeItem(token_name);
     return json;
-  }).catch(error => {
-    console.log(error);
-  });
+  })
 }
 
 export function get_user_by_username (username: string) {
   return send_request(`/get_user_by_username/${username}`, "GET", null, null).then(json => {
     return json;
-  }).catch(error => {
-    console.log(error);
-  });
+  })
 }
 
 export function get_user_reviews(user_id: number, review_id: number) {
@@ -88,7 +84,17 @@ export function get_user_reviews(user_id: number, review_id: number) {
   send_request(`/get_user_reviews/${user_id}`, "GET", null, null);
   return promise.then(json => {
     return json;
-  }).catch(error => {
-    console.log(error);
+  })
+}
+
+export function create_recipe(data: FormData) {
+  return send_request(`/recipes`, "POST", data, null).then(json => {
+    return json
+  });
+}
+
+export function get_recipe_by_id(id: number) {
+  return send_request(`/recipes/${id}`, "GET", null, null).then(json => {
+    return json
   });
 }

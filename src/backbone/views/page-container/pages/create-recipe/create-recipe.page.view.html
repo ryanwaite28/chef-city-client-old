@@ -1,0 +1,36 @@
+<div id="create-recipe-page-view">
+    <div class="card space-bm-1">
+      <div class="card-body">
+        <h3>Create Recipe</h3>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-body">
+        <form id="create-recipe-form">
+          <div class="form-group">
+            <label for="title-input">Title</label>
+            <input type="text" name="recipe-title" class="form-control" id="title-input" placeholder="Enter title"/>
+          </div>
+          <div class="form-group">
+            <label for="description-input">Description</label>
+            <textarea class="form-control" name="recipe-description" id="description-input" rows="3" placeholder="Enter description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="ingredients-input">Ingredients</label>
+            <textarea class="form-control" name="recipe-ingredients" id="ingredients-input" rows="3" placeholder="Enter ingredients"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tags-input">Tags</label>
+            <textarea class="form-control" name="recipe-tags" id="tags-input" rows="3" placeholder="Enter tags"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="image-input">Image</label><br/>
+            <input class="btn grey-border-1" name="recipe-image" type="file" />
+          </div>
+  
+          <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
