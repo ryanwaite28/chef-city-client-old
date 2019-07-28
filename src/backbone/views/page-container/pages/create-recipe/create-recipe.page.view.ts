@@ -52,7 +52,7 @@ const CreateRecipePageView = View.extend({
         flash_message(resp.message, 'success');
         setTimeout(() => {
             const router = getAppRouter();
-            const newRecipePageUrl = `#/recipes/${resp.rewRecipe.id}`;
+            const newRecipePageUrl = `#/recipes/${resp.newRecipe.id}`;
             router.navigate(newRecipePageUrl);
           }, 1000);
     });
