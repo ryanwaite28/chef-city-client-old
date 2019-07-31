@@ -42,7 +42,7 @@ const UserPageView = View.extend({
   render() {
     const data = this.model.toJSON();
     const obj = { ...data, user: this.user };
-    console.log(obj);
+    // console.log(obj);
     
     const html = this.template(obj);
     this.$el.html(html);

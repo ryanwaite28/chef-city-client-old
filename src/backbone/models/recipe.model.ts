@@ -2,7 +2,8 @@ import { Model } from 'backbone';
 
 const RecipeModel: Model = Model.extend({
 
-  urlRoot: '/api/recipes',
+  defaults: {},
+  initialize(){}
 
 });
 

@@ -110,3 +110,9 @@ export function get_recipe_by_id(id: number) {
     return json
   });
 }
+
+export function get_random_recipes() {
+  return send_request(`/get_random_recipes`, "GET", null, null).then(json => {
+    return json
+  });
+}

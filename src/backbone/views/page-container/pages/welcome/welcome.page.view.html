@@ -1,3 +1,7 @@
 <div id="welcome-page-view">
-  Welcome
+  <% if (typeof(recipes) !== "undefined") { %>
+    <div id="recipes-container"></div>
+  <% } else { %>
+    <p class="text-center">No feed, yet!</p>
+  <% } %>
 </div>
