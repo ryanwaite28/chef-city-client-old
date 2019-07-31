@@ -14,12 +14,12 @@
       <div class="card space-bm-1">
         <div class="card-body">
           <img class="home-bio-img" 
-            src="<%= icon_link %>" 
-            alt="<%= displayname %>">
+            src="<%= user.icon_link %>" 
+            alt="<%= user.displayname %>">
     
           <div class="text-center">
-            <h5><%= displayname %></h5>
-            <p><%= username %></p>
+            <h5><%= user.displayname %></h5>
+            <p><%= user.username %></p>
           </div>
         </div>
       </div>
@@ -27,7 +27,11 @@
       <div class="card space-bm-1">
         <div class="card-body">
           <ul class="list-group">
-            <a href="#/create-recipe" class="list-group-item list-group-item-action">Create Recipe</a>
+            <% if (user.id === you.id) { %>
+              <a href="#/users/<%= user.id %>/settings" class="list-group-item list-group-item-action">Settings</a>
+              <a href="#/create-recipe" class="list-group-item list-group-item-action">Create Recipe</a>
+            <% } %>
+            <a href="#/users/<%= user.id %>/recipes" class="list-group-item list-group-item-action">User Recipes</a>
           </ul>
         </div>
       </div>
@@ -35,7 +39,11 @@
     <div class="col-md-8">
       <div class="card space-bm-1">
         <div class="card-body">
-          
+          <% if (typeof(recipeFeed) !== "undefined") { %>
+            
+          <% } else { %>
+            <p class="text-center">No feed yet. Follow people to see their content!</p>
+          <% } %>
         </div>
       </div>
     </div>

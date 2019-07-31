@@ -1,4 +1,4 @@
-import { Router, history, Model, View } from 'backbone';
+import { Router, history, View } from 'backbone';
 import { pairs, find, isRegExp } from 'underscore';
 
 import { 
@@ -16,9 +16,10 @@ import Models from './models/_main';
 import WelcomePageView from './views/page-container/pages/welcome/welcome.page.view';
 import SignupPageView from './views/page-container/pages/signup/signup.page.view';
 import SigninPageView from './views/page-container/pages/signin/signin.page.view';
-import HomePageView from './views/page-container/pages/home/home.page.view';
+import UserPageView from './views/page-container/pages/user-page/user.page.view';
 import CreateRecipePageView from './views/page-container/pages/create-recipe/create-recipe.page.view';
 import RecipePageView from './views/page-container/pages/recipe-page/recipe-page.page.view';
+import SettingsPageView from './views/page-container/pages/settings/settings.page.view';
 
 
 const AppRouter = Router.extend({
@@ -27,7 +28,8 @@ const AppRouter = Router.extend({
     "": "welcome",
     "signup": "signup",
     "signin": "signin",
-    "home": "home",
+    "users/:id": "userPage",
+    "users/:id/settings": "settingsPage",
     "create-recipe": "createRecipe",
     "recipes/:id": "recipePage",
   },
@@ -80,25 +82,18 @@ const AppRouter = Router.extend({
     setCurrentPageView(currentPageView);
   },
 
-  home() {
-    // console.log('navigating to: /home');
+  userPage() {
     const sessionModel = getSessionModel();
     
-    if (sessionModel.get('online')) {
-      // console.log('is online');
-      const currentPageView = new HomePageView({ model: sessionModel });
-      setCurrentPageView(currentPageView);
-    } else {
-      // console.log('is not online');
-      this.navigate('/#/signin');
-    }
+    const currentPageView = new UserPageView({ model: sessionModel });
+    setCurrentPageView(currentPageView);
   },
 
   createRecipe() {
     // console.log('navigating to: /create-recipe');
     const sessionModel = getSessionModel();
     
-    if (sessionModel.get('online')) {
+    if (sessionModel.get('session').online) {
       // console.log('is online');
       const currentPageView = new CreateRecipePageView({ model: sessionModel });
       setCurrentPageView(currentPageView);
@@ -109,6 +104,7 @@ const AppRouter = Router.extend({
   },
 
   recipePage() {
+    const sessionModel = getSessionModel();
     // const current = this.current();
     // const id = parseInt(current.params[0]);
     // get_recipe_by_id(id).then(resp => {
@@ -123,8 +119,28 @@ const AppRouter = Router.extend({
     //   }
     // });
 
-        const currentPageView: View = new RecipePageView({ model: null });
-        setCurrentPageView(currentPageView);
+    const currentPageView: View = new RecipePageView({ model: sessionModel });
+    setCurrentPageView(currentPageView);
+  },
+
+  settingsPage() {
+    const sessionModel = getSessionModel();
+    const current = this.current();
+    const id = parseInt(current.params[0]);
+    const shouldDenyAccess = (
+      !id ||
+      !sessionModel.get('session').online ||
+      (
+        sessionModel.get('session').online && 
+        sessionModel.get('you').id !== id
+      )
+    );
+    if (shouldDenyAccess) {
+      this.navigate('/#/signin');
+    } else {
+      const currentPageView: View = new SettingsPageView({ model: sessionModel });
+      setCurrentPageView(currentPageView);
+    }
   },
 
 });

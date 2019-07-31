@@ -64,7 +64,8 @@ const SigninPageView = View.extend({
       setTimeout(() => {
         setSessionModel(resp);
         const router = getAppRouter();
-        router.navigate('#/home');
+        const route = `#/users/${resp.user.id}`;
+        router.navigate(route);
       }, 1000);
     });
   },

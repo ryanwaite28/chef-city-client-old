@@ -13,6 +13,7 @@ import AppRouter from './router';
 
 const AppStore: any = {};
 export const Stream = new Subject();
+export const  numberRegex = /[0-9]+/;
 export enum ActionTypes {
   SESSION_CHANGE,
 }
@@ -39,9 +40,9 @@ export function setSessionModel(sessionResp: any, triggerStream: boolean = false
   if (sessionResp.user) {
     const user = { ...sessionResp.user };
     delete sessionResp.user;
-    sessionObj = { ...sessionResp, ...user }
+    sessionObj = { session: { ...sessionResp }, you: user }
   } else {
-    sessionObj = { ...sessionResp }
+    sessionObj = { session: { ...sessionResp } }
   }
 
   if (!AppStore.sessionModel) {

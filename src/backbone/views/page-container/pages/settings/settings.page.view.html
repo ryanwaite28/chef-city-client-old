@@ -1,0 +1,62 @@
+<div id="home-page-view">
+    <!-- <div class="card space-bm-1">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-center">Home</h3>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card space-bm-1">
+          <div class="card-body">
+            <img class="home-bio-img" 
+              src="<%= you.icon_link %>" 
+              alt="<%= you.displayname %>">
+      
+            <div class="text-center">
+              <h5><%= you.displayname %></h5>
+              <p><%= you.username %></p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card space-bm-1">
+          <div class="card-body">
+            <ul class="list-group">
+              
+                <a href="#/settings" class="active list-group-item list-group-item-action">Settings</a>
+                <a href="#/create-recipe" class="list-group-item list-group-item-action">Create Recipe</a>
+              
+              <a href="#/users/<%= you.id %>/recipes" class="list-group-item list-group-item-action">User Recipes</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card space-bm-1">
+          <div class="card-body">
+            <h4>Update icon</h4>
+
+            <form id="profile-icon-form">
+              <div class="form-group">
+                <label for="image-input">Image</label><br/>
+                <input class="btn grey-border-1" name="profile-image" type="file" />
+              </div>
+      
+              <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="card space-bm-1">
+          <div class="card-body">
+            
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>

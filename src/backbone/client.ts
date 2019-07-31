@@ -75,7 +75,13 @@ export function check_session () {
 export function get_user_by_username (username: string) {
   return send_request(`/get_user_by_username/${username}`, "GET", null, null).then(json => {
     return json;
-  })
+  });
+}
+
+export function get_user_by_id(id: number) {
+  return send_request(`/users/${id}`, "GET", null, null).then(json => {
+    return json;
+  });
 }
 
 export function get_user_reviews(user_id: number, review_id: number) {
@@ -89,6 +95,12 @@ export function get_user_reviews(user_id: number, review_id: number) {
 
 export function create_recipe(data: FormData) {
   return send_request(`/recipes`, "POST", data, null).then(json => {
+    return json
+  });
+}
+
+export function update_profile_icon(data: FormData, id: number) {
+  return send_request(`/users/${id}`, "PUT", data, null).then(json => {
     return json
   });
 }
