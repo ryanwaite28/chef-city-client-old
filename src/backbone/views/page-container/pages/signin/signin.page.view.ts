@@ -62,9 +62,9 @@ const SigninPageView = View.extend({
       
       flash_message(resp.message, 'success');
       setTimeout(() => {
+        const route = `#/users/${resp.user.id}`;
         setSessionModel(resp);
         const router = getAppRouter();
-        const route = `#/users/${resp.user.id}`;
         router.navigate(route);
       }, 1000);
     });
