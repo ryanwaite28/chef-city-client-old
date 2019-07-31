@@ -3,7 +3,7 @@ import { template } from 'underscore';
 
 import HtmlTemplate from './settings.page.view.html';
 import { disable_buttons, flash_message, enable_buttons } from '../../../../vault';
-import { getAppRouter, setSessionModel } from '../../../../chamber';
+import { setSessionModel } from '../../../../chamber';
 import { update_profile_icon } from '../../../../client';
 
 const SettingsPageView = View.extend({
@@ -14,6 +14,9 @@ const SettingsPageView = View.extend({
   initialize() {
     this.render();
     this.bindEvents();
+
+    this.model.on('change', this.onChange, this);
+    this.model.on('destroy', this.removeView, this);
   },
 
   bindEvents() {
@@ -22,6 +25,10 @@ const SettingsPageView = View.extend({
 
   removeView() {
     this.$el.remove();
+  },
+
+  onChange() {
+    this.render();
   },
 
   render() {
@@ -44,9 +51,9 @@ const SettingsPageView = View.extend({
     disable_buttons();
     update_profile_icon(formData, data.you.id).then(resp => {
       // console.log(resp);
+      enable_buttons();
       if (resp.error) {
         flash_message(resp.message, 'danger');
-        enable_buttons();
         return;
       }
       flash_message(resp.message, 'success');
