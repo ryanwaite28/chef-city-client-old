@@ -5,7 +5,7 @@
                     <!-- from: https://www.w3schools.com/howto/howto_css_contact_chips.asp -->
                     <div class="chip">
                         <img src="<%= creator.icon_link %>" >
-                        <%= creator.displayname %>
+                        <a href="/#/users/<%= creator.id %>"><%= creator.displayname %></a>
                     </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
     
         <div class="row">
             <div class="col-md-6">
-                <h2><%= title %></h2>
+                <h2><a href="/#/recipes/<%= id %>"><%= title %></a></h2>
                 <h6><%= desc %></h6>
                 <img class="recipe-img-1 polaroid-1" src="<%= image_link %>" >
             </div>

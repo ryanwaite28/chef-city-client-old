@@ -1,3 +1,5 @@
+import { formatAllDateProperties } from "./vault";
+
 const token_name: string = 'chef-city-token';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -28,7 +30,14 @@ export function send_request(route: string, method: string, data: {} | FormData,
   }
 
   const url = api_domain + route;
-  return fetch(url, obj).then((resp) => resp.json());
+
+  return fetch(url, obj).then((resp) => resp.json()).then(json => {
+    // console.time('recursive date modify...');
+    formatAllDateProperties(json, 'date_created');
+    // console.timeEnd('recursive date modify...');
+
+    return json;
+  });
 }
 
 export function sign_up (data: any) {
@@ -93,8 +102,18 @@ export function get_user_reviews(user_id: number, review_id: number) {
   })
 }
 
+export function get_user_recipes(creator_id: number, recipe_id: number) {
+  const promise = recipe_id ? 
+  send_request(`/get_user_recipes/${creator_id}/${recipe_id}`, "GET", null, null) :
+  send_request(`/get_user_recipes/${creator_id}`, "GET", null, null);
+  return promise.then(json => {
+    return json;
+  })
+}
+
 export function create_recipe(data: FormData) {
   return send_request(`/recipes`, "POST", data, null).then(json => {
+    json.date
     return json
   });
 }

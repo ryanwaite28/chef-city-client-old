@@ -20,6 +20,7 @@ import UserPageView from './views/page-container/pages/user-page/user.page.view'
 import CreateRecipePageView from './views/page-container/pages/create-recipe/create-recipe.page.view';
 import RecipePageView from './views/page-container/pages/recipe-page/recipe-page.page.view';
 import SettingsPageView from './views/page-container/pages/settings/settings.page.view';
+import UserRecipesPageView from './views/page-container/pages/user-recipes-page/user-recipes.page.view';
 
 
 const AppRouter = Router.extend({
@@ -29,6 +30,7 @@ const AppRouter = Router.extend({
     "signup": "signup",
     "signin": "signin",
     "users/:id": "userPage",
+    "users/:id/recipes": "userRecipesPage",
     "users/:id/settings": "settingsPage",
     "create-recipe": "createRecipe",
     "recipes/:id": "recipePage",
@@ -86,6 +88,13 @@ const AppRouter = Router.extend({
     const sessionModel = getSessionModel();
     
     const currentPageView = new UserPageView({ model: sessionModel });
+    setCurrentPageView(currentPageView);
+  },
+
+  userRecipesPage() {
+    const sessionModel = getSessionModel();
+    
+    const currentPageView = new UserRecipesPageView({ model: sessionModel });
     setCurrentPageView(currentPageView);
   },
 

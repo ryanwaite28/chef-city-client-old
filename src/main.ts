@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Page loaded');
+  console.log('Page loaded.');
   const app: App = new App();
   Object.freeze(app);
 });

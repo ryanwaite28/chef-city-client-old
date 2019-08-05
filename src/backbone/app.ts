@@ -16,8 +16,7 @@ export default class App {
   }
 
   private initApp() {
-    check_session()
-    .then(sessionObj => {
+    check_session().then(sessionObj => {
       setSessionModel(sessionObj);
       setAppRouter();
       setNavbarView();

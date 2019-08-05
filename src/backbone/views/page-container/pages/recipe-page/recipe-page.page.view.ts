@@ -6,11 +6,14 @@ import { disable_buttons, enable_buttons, flash_message } from '../../../../vaul
 import { getAppRouter, setCurrentPageView } from '../../../../chamber';
 import { get_recipe_by_id } from '../../../../client';
 import Models from '../../../../models/_main';
+import Views from '../../../../views/_main';
 
 const RecipePageView = View.extend({
   
   tagName: 'app-recipe',
   template: template(HtmlTemplate),
+  recipeModel: null,
+  recipeView: null,
 
   initialize() {
     const router = getAppRouter();
@@ -19,15 +22,15 @@ const RecipePageView = View.extend({
     get_recipe_by_id(id).then(resp => {
       if (resp.recipe) {
         console.log(`recipe exists`, resp.recipe);
-        const recipeModel: Model = new Models.RecipeModel(resp.recipe);
-        this.model = recipeModel;
+        this.recipeModel = new Models.RecipeModel(resp.recipe);
+        this.recipeView = new Views.RecipeView({ model: this.recipeModel });
         this.render();
         this.bindEvents();
         console.log(this);
         
       } else {
         console.log(`no recipe exists with id: ${id}. redirecting...`);
-        router.navigate(`#/home`);
+        router.navigate(`#/`);
       }
     });
   },
@@ -41,9 +44,11 @@ const RecipePageView = View.extend({
   },
 
   render() {
-    const data = this.model.toJSON();
-    const html = this.template(data);
+    const html = this.template();
     this.$el.html(html);
+
+    this.$el.find('#recipe-container').append(this.recipeView.el);
+
     return this;
   },
 

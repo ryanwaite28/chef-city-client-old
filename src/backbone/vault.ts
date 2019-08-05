@@ -1,3 +1,44 @@
+import * as moment from 'moment';
+
+export function isObjectLiteral(obj: any) {
+  if (typeof (obj) === 'object') {
+    if (obj === null) {
+      return false;
+    }
+    if (obj.constructor === Object) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+}
+
+export function date_formatter(date: string) {
+  // format --- December 23, 2017 - 10:40 PM
+  // console.log(date);
+  return moment(date).format('MMMM D, YYYY - h:mm A');
+}
+
+export function formatAllDateProperties(obj: any, dateProp: string) {
+  if (isObjectLiteral(obj)) {
+    const keys = Object.keys(obj);
+    for (const key of keys) {
+      if (typeof (obj[key]) === 'string') {
+        if (key === dateProp) {
+          obj[key] = date_formatter(obj[key]);
+        }
+      }
+      if (typeof (obj[key]) === 'object') {
+        formatAllDateProperties(obj[key], dateProp);
+      }
+    }
+  } else if (Array.isArray(obj)) {
+    for (const item of obj) {
+      formatAllDateProperties(item, dateProp);
+    }
+  }
+}
+
 export const flash_message = function(message: string, alertType: string = 'primary', duration: number = 3) {
   duration = parseInt(String(duration + '000'), 10);
   message = message.trim();
