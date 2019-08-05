@@ -42,7 +42,7 @@ export function setSessionModel(sessionResp: any, triggerStream: boolean = false
     delete sessionResp.user;
     sessionObj = { session: { ...sessionResp }, you: user }
   } else {
-    sessionObj = { session: { ...sessionResp } }
+    sessionObj = { session: { ...sessionResp }, you: {} }
   }
 
   if (!AppStore.sessionModel) {
