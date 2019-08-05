@@ -14,3 +14,7 @@ Using:
 * jQuery
 * Underscore
 * RXJS
+
+<br/>
+
+Clipart from: http://www.clipartpanda.com/categories/cooking-clipart

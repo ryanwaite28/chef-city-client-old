@@ -4,7 +4,11 @@ const path = require('path');
 const PORT = process.env.PORT || 7600;
 const app = express();
 
-app.use(express.static(path.join(__dirname, './build')));
+const staticPath = path.join(__dirname, './_static');
+const buildPath = path.join(__dirname, './build');
+
+app.use('/static', express.static(staticPath));
+app.use(express.static(buildPath));
 
 // production mode
 if(process.env.NODE_ENV === 'production') {
